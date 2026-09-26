@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container text-center justify-content-center">
+    <form class="form-control" method="POST" 
+    action="{% url 'detalleTarea' tarea.id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Titulo</label>
+            <input
+                type="text"
+                class="form-control"
+                name="titulo"
+                id="titulo"
+                aria-describedby="helpId"
+                value="{{tarea.Titulo}}"
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Descripcion</label>
+            <textarea class="form-control" name="descripcion" id="descripcion" rows="3" required >{{tarea.descripcion}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Fecha</label>
+            <input
+                type="date"
+                class="form-control"
+                name="fecha"
+                id="fecha"
+                aria-describedby="helpId"
+                value="{{tarea.fecha| date:'Y-m-d'}}"
+                required
+            />
+        </div>
+        <div class="container">
+            <input type="submit" class="btn btn-success" value="Cargar"/>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
